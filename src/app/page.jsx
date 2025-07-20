@@ -55,7 +55,7 @@ const Home = () => {
               Get personalized sensitivity settings based on your device and FPS support. Dominate the battleground with
               pro-level precision and control.
             </p>
-            <Link href='/sensi'><button className='bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 rounded-lg hover:to-red-700 text-white px-6 py-3 text-lg font-semibold shadow-2xl'>Get Sensitivity</button></Link>
+            <Link href='/sensitivity'><button className='bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 rounded-lg hover:to-red-700 text-white px-6 py-3 text-lg font-semibold shadow-2xl'>Get Sensitivity</button></Link>
           </div>
           <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
             <div className="absolute top-20 left-10 w-2 h-2 bg-orange-500 rounded-full animate-ping"></div>

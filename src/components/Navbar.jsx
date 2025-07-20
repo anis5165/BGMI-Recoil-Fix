@@ -9,7 +9,7 @@ const Navbar = () => {
                     <li className='text-sm font-medium hover:text-orange-400 transition-colors'><a href="/">Home</a></li>
                     <li className='text-sm font-medium hover:text-orange-400 transition-colors'><a href="/about">About</a></li>
                     <li className='text-sm font-medium hover:text-orange-400 transition-colors'><a href="/contact">Contact</a></li>
-                    <li className='text-sm font-medium hover:text-orange-400 transition-colors'><a href="/sensi">Get Sensitivity</a></li>
+                    <li className='text-sm font-medium hover:text-orange-400 transition-colors'><a href="/sensitivity">Get Sensitivity</a></li>
                 </ul>
             </nav>
         </div>
