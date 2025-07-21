@@ -8,25 +8,83 @@ export async function POST(req) {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-  const prompt = `
-You are a professional mobile gaming coach and BGMI (Battlegrounds Mobile India) optimization expert. Your task is to generate the best possible sensitivity settings for BGMI based on a user's mobile device and its FPS capability.
+const prompt = `
+You are a professional BGMI (Battlegrounds Mobile India) coach and sensitivity optimization expert.
 
-Take into account the device's screen size, touch sensitivity, frame rate support (e.g. 60fps or 90fps), and known hardware limits if applicable.
+Your task is to generate a personalized and accurate sensitivity configuration for a player based on their mobile **device model** and **FPS capability**. Match the sensitivity settings with the device’s touch responsiveness, FPS tier, screen size, and use-case.
 
-Provide a complete and optimized sensitivity setup, including:
-- Camera Sensitivity (free look)
-- Camera Sensitivity (3rd Person, 1st Person, etc.)
-- ADS Sensitivity (3rd Person, 1st Person, scopes)
-- Gyroscope Sensitivity
+---
 
-Format your response cleanly using section headers and make it easy to read. Avoid generic settings — tailor them based on the device and FPS support.
+**IMPORTANT:**
+- Format your entire response in markdown.
+- Use bullet points ("- ") for all lists and settings, as shown in the structure below.
+- Do not use HTML or numbered lists.
+- Do not skip any section.
+- Do not add extra commentary or explanation outside the structure.
 
-Device: ${device}
-FPS Support: ${fps}
-`;
+---
+
+First, analyze and provide these 📱 **Device Details**:
+- Display: [provide display refresh rate, e.g., 60Hz, 90Hz, 120Hz]
+- FPS Support in BGMI: [Explain based on "medium", "high", "ultra", "extreme", "90", or "120"]
+- Ideal Graphics: [E.g., Smooth + Extreme, HDR + Ultra, etc.]
+
+Device Name: ${device}
+FPS Tier: ${fps} (Can be: "medium", "high", "ultra", "extreme", "90", or "120")
+
+---
+
+Then generate 🎮 **Sensitivity Settings** in this structure:
+
+🎥 **Camera Sensitivity (Free Look)**  
+- 3rd Person Camera (Free Look): [value]  
+- 1st Person Camera (Free Look): [value]  
+- Camera (Free Look): [value]  
+
+📷 **Camera Sensitivity (Scope Movement)**  
+- No Scope: [value]  
+- Red Dot, Holo: [value]  
+- 2x Scope: [value]  
+- 3x Scope: [value]  
+- 4x Scope: [value]  
+- 6x Scope: [value]  
+- 8x Scope: [value]  
+
+🎯 **ADS Sensitivity (Touch Recoil)**  
+- No Scope: [value]  
+- Red Dot, Holo: [value]  
+- 2x Scope: [value]  
+- 3x Scope: [value]  
+- 4x Scope: [value]  
+- 6x Scope: [value]  
+- 8x Scope: [value]  
+
+🌀 **Gyroscope Sensitivity**  
+- No Scope: [value]  
+- Red Dot, Holo: [value]  
+- 2x Scope: [value]  
+- 3x Scope: [value]  
+- 4x Scope: [value]  
+- 6x Scope: [value]  
+- 8x Scope: [value]  
+
+---
+
+The values should be:
+- Tuned based on device hardware and FPS capability
+- Competitive and realistic
+- Easy to read in bullet format
+`
+
+
 
   try {
-    const result = await model.generateContent(prompt);
+    const result = await model.generateContent(prompt, {
+      generationConfig: {
+        maxOutputTokens: 2048,
+        temperature: 0.7,
+      },
+    });
     const response = await result.response;
     const text = response.text();
     return new Response(JSON.stringify({ text }), { status: 200 });
