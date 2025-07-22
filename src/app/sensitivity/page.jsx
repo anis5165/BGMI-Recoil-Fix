@@ -9,11 +9,21 @@ import Link from 'next/link'
 
 const Sensitivity = () => {
   const [parsedResponse, setParsedResponse] = useState(null)
+  const [rawText, setRawText] = useState('')
 
   const parseGeminiResponse = (text) => {
-    const sections = text.split(/\n\s*---\s*\n/);
-  
+    if (!text || typeof text !== 'string') return null;
+
+    const sectionMap = {
+      deviceDetails: /(📱.*?Device Details|Device Details)[\s\S]*?(?=\n[^\n]*?(🎥|📷|🎯|🌀|$))/,
+      cameraFreeLook: /(🎥.*?Free Look|Camera Sensitivity \(Free Look\))[\s\S]*?(?=\n[^\n]*?(📷|🎯|🌀|$))/,
+      cameraScope: /(📷.*?Scope Movement|Camera Sensitivity \(Scope Movement\))[\s\S]*?(?=\n[^\n]*?(🎯|🌀|$))/,
+      ads: /(🎯.*?Touch Recoil|ADS Sensitivity \(Touch Recoil\))[\s\S]*?(?=\n[^\n]*?(🌀|$))/,
+      gyroscope: /(🌀.*?Gyroscope|Gyroscope Sensitivity)[\s\S]*/,
+    };
+
     const extractValues = (section) => {
+      if (!section) return {};
       const lines = section.split('\n').filter(line => line.includes(':'));
       return Object.fromEntries(
         lines.map(line => {
@@ -22,16 +32,19 @@ const Sensitivity = () => {
         })
       );
     };
-  
-    return {
-      deviceDetails: extractValues(sections.find(s => s.includes('📱')) || ''),
-      cameraFreeLook: extractValues(sections.find(s => s.includes('🎥')) || ''),
-      cameraScope: extractValues(sections.find(s => s.includes('📷')) || ''),
-      ads: extractValues(sections.find(s => s.includes('🎯')) || ''),
-      gyroscope: extractValues(sections.find(s => s.includes('🌀')) || '')
-    };
+
+    const parsed = {};
+    for (const [key, regex] of Object.entries(sectionMap)) {
+      const match = text.match(regex);
+      parsed[key] = extractValues(match?.[0] || '');
+    }
+
+    if (Object.values(parsed).every(obj => Object.keys(obj).length === 0)) {
+      return null;
+    }
+
+    return parsed;
   };
-  
 
   const sensiForm = useFormik({
     initialValues: {
@@ -41,9 +54,10 @@ const Sensitivity = () => {
     onSubmit: (values) => {
       axios.post('/api/gemini', values)
         .then((result) => {
-          const rawText = result.data.text
-          console.log('Gemini Response:', rawText)
-          const parsed = parseGeminiResponse(rawText)
+          const raw = result.data.text
+          console.log('Gemini Response:', raw)
+          setRawText(raw)
+          const parsed = parseGeminiResponse(raw)
           setParsedResponse(parsed)
           toast.success('Sensitivity settings generated successfully!')
         })
@@ -118,7 +132,7 @@ const Sensitivity = () => {
           </button>
         </form>
 
-        {parsedResponse && (
+        {parsedResponse ? (
           <div className="mt-8 w-full bg-slate-900/80 border border-orange-500 rounded-xl p-6 text-left shadow-lg animate-fade-in space-y-6">
             <h2 className="text-2xl font-bold text-orange-400">Your Personalized Sensitivity Settings</h2>
 
@@ -166,6 +180,12 @@ const Sensitivity = () => {
                 ))}
               </ul>
             </section>
+          </div>
+        ) : sensiForm.values.device && sensiForm.values.fps && (
+          <div className="mt-8 w-full bg-slate-900/80 border border-orange-500 rounded-xl p-6 text-left shadow-lg animate-fade-in space-y-6">
+            <h2 className="text-2xl font-bold text-orange-400">Raw Gemini Output</h2>
+            <pre className="text-blue-200 whitespace-pre-wrap">{rawText}</pre>
+            <p className="text-red-400">Could not parse Gemini response. Please try again or contact support.</p>
           </div>
         )}
       </div>

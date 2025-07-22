@@ -27,7 +27,7 @@ Your task is to generate a personalized and accurate sensitivity configuration f
 First, analyze and provide these 📱 **Device Details**:
 - Display: [provide display refresh rate, e.g., 60Hz, 90Hz, 120Hz]
 - FPS Support in BGMI: [Explain based on "medium", "high", "ultra", "extreme", "90", or "120"]
-- Ideal Graphics: [E.g., Smooth + Extreme, HDR + Ultra, etc.]
+- Ideal Graphics: [smooth ]
 
 Device Name: ${device}
 FPS Tier: ${fps} (Can be: "medium", "high", "ultra", "extreme", "90", or "120")
@@ -59,7 +59,7 @@ Then generate 🎮 **Sensitivity Settings** in this structure:
 - 6x Scope: [value]  
 - 8x Scope: [value]  
 
-🌀 **Gyroscope Sensitivity**  
+🌀 **Gyroscope Sensitivity (Zero Recoil)**  
 - No Scope: [value]  
 - Red Dot, Holo: [value]  
 - 2x Scope: [value]  
@@ -86,7 +86,7 @@ The values should be:
       },
     });
     const response = await result.response;
-    const text = response.text();
+    const text = await response.text();
     return new Response(JSON.stringify({ text }), { status: 200 });
   } catch (error) {
     console.error("Gemini API error:", error);
