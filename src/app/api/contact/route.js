@@ -16,3 +16,15 @@ export async function POST(request) {
         return NextResponse.json({ error: "Database connection failed" }, { status: 500 });
     }
 }
+
+
+export async function GET() {
+    try {
+        await connectDB();
+        const contacts = await contact.find({});
+        return NextResponse.json(contacts, { status: 200 });
+    } catch (error) {
+        console.error("Error fetching contacts:", error);
+        return NextResponse.json({ error: "Failed to fetch contacts" }, { status: 500 });
+    }
+}
