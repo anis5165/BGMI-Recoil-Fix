@@ -27,7 +27,7 @@ const About = () => (
       <div>
         <h2 className="text-2xl font-semibold text-orange-300 mb-2">Contact</h2>
         <p className="text-blue-100">
-          Have questions or feedback? Reach out at <span className="text-orange-400">bgmisetupzone@gmail.com</span>
+          Have questions or feedback? Reach out at <span className="text-orange-400"><a href="mailto:mevikas51@gmail.com">mevikas51@gmail.com</a></span>
         </p>
       </div>
     </div>

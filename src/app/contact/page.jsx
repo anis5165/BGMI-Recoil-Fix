@@ -47,6 +47,7 @@ const Contact = () => {
           <input
             type="text"
             placeholder="Your Name"
+            id='name'
             onChange={contactForm.handleChange}
             value={contactForm.values.name}
             className="w-full bg-slate-800/70 px-4 py-3 rounded-lg border border-blue-700/50 text-white placeholder:text-blue-300 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
@@ -62,6 +63,7 @@ const Contact = () => {
           <input
             type="email"
             placeholder="Your Email"
+            id='email'
             onChange={contactForm.handleChange}
             value={contactForm.values.email}
             className="w-full bg-slate-800/70 px-4 py-3 rounded-lg border border-blue-700/50 text-white placeholder:text-blue-300 focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
@@ -77,6 +79,7 @@ const Contact = () => {
           <textarea
             rows={4}
             placeholder="Your Message"
+            id='message'
             onChange={contactForm.handleChange}
             value={contactForm.values.message}
             className="w-full bg-slate-800/70 px-4 py-3 rounded-lg border border-blue-700/50 text-white placeholder:text-blue-300 focus:outline-none focus:ring-2 focus:ring-orange-500 transition resize-none"
@@ -96,7 +99,7 @@ const Contact = () => {
         </button>
       </form>
       <div className="mt-8 text-blue-100">
-        Or email us directly at <span className="text-orange-400">bgmisetupzone@gmail.com</span>
+        Or email us directly at <span className="text-orange-400"><a href="mailto:mevikas51@gmail.com">mevikas51@gmail.com</a></span>
       </div>
     </div>
   </div>
