@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
         </button>
         {/* Feedback Modal */}
         {showFeedback && (
-          <div className="fixed inset-0 z-[201] flex items-center justify-center bg-black/60">
+          <div className="fixed inset-0 z-[201] px-4 flex items-center justify-center bg-black/60">
             <div className="relative w-full max-w-md mx-auto">
               <button
                 className="absolute top-2 right-2 text-orange-400 bg-slate-900/80 rounded-full p-2 hover:bg-slate-800 transition"

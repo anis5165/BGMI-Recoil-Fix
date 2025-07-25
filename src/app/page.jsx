@@ -82,7 +82,8 @@ const Home = () => {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-white">Why Choose Our Sensitivity Service?</h2>
             <p className="text-lg sm:text-xl text-blue-200 max-w-2xl mx-auto">
-              Scientifically optimized settings for every device and playstyle
+              Scientifically optimized settings for every device and playstyle.<br />
+              <span className="text-orange-400 font-semibold">Powered by AI for truly personalized BGMI sensitivity.</span>
             </p>
           </div>
           <div>

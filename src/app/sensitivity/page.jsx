@@ -198,6 +198,8 @@ const Sensitivity = () => {
                 ))}
               </ul>
             </section>
+            <h1 className='text-center text-lg sm:text-xl font-bold text-orange-400 mt-4 mb-2'>"Apply. Train. Dominate."</h1>
+            <p className='text-center text-sm sm:text-base text-blue-300 mb-2'>Master your sensitivity, elevate your gameplay.</p>
           </div>
         ) : sensiForm.values.device && sensiForm.values.fps && rawText ? (
           <div className="mt-8 w-full bg-slate-900/80 border border-orange-500 rounded-xl p-4 sm:p-6 text-left shadow-lg animate-fade-in space-y-6 overflow-x-auto">
