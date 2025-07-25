@@ -112,7 +112,7 @@ const Home = () => {
           <div className="text-center mb-10 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-4 text-orange-400">What Players Say</h2>
             <p className="text-lg sm:text-xl text-blue-200 max-w-2xl mx-auto">
-              Real feedback from BGMI pros and enthusiasts
+              Real feedback from BGMI players and enthusiasts
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
