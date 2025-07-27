@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <>
             <div className='fixed w-full z-50 px-4 lg:px-36 h-16 flex justify-between items-center border-b border-blue-800/30 backdrop-blur-sm bg-slate-900/50'>
-                <h1 className='text-xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent'>BGMIRecoilFix</h1>
+                <h1 className='text-xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent'>BGMISensiFix</h1>
                 {/* Desktop Nav */}
                 <nav className='hidden md:flex justify-between items-center space-x-4'>
                     <ul className='flex space-x-4 text-white'>

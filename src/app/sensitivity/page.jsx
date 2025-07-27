@@ -152,6 +152,7 @@ const Sensitivity = () => {
 
         {parsedResponse ? (
           <div className="mt-8 w-full bg-slate-900/80 border border-orange-500 rounded-xl p-4 sm:p-6 text-left shadow-lg animate-fade-in space-y-6 overflow-x-auto">
+            <p className='text-sm text-red-700 border p-2'>⚠️ These settings are AI-based estimates and may require manual adjustments depending on personal preference, device wear, or software versions.</p>
             <h2 className="text-xl sm:text-2xl font-bold text-orange-400">Your Personalized Sensitivity Settings</h2>
 
             <section>
